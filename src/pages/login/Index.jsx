@@ -6,7 +6,8 @@ import { NavLink } from 'react-router-dom';
 export default class Login extends Component {
   state = {
     email: "",
-    pass: ""
+    pass: "",
+    error: ""
   };
 
   changeEmail = e => {
@@ -52,7 +53,11 @@ export default class Login extends Component {
             break;
         }
       })
-      .then(data => this.setState({ data }));
+      .catch(data => {
+        this.setState({
+          error: data.response
+        })
+      });
   };
 
   render () {
